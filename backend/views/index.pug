@@ -1,0 +1,22 @@
+extends layout.pug
+
+include mixins/vstack
+
+block code
+    - const title = "Index"
+
+block main-content
+    +vstack()
+        p.lead
+            | Welcome #{username ? `back, ${username}.` : "to the School Library Management System."}
+            br
+            | #{username ? "What do you want to do today?" : "Please log in or create an account if you don't have one."}
+        if username
+            case role
+                when "student"
+                when "teacher"
+                    include includes/index_user
+                when "operator"
+                    include includes/index_operator
+                when "admin"
+                    include includes/index_admin

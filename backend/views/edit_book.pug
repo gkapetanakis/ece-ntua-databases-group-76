@@ -1,0 +1,20 @@
+extends layout
+
+include mixins/input_groups
+include mixins/vstack
+
+block code
+    - const title = "Edit Book"
+
+block main-content
+    form(action="/operator/edit_book" method="POST")
+        +vstack()
+            h2 Edit Book
+            +text-input-group("New Title", false)(id="new-title" name="newTitle")
+            +text-input-group("New Publisher", false)(id="new-publisher" name="newPublisher")
+            +number-input-group("New Page Count", false)(id="new-page-count" name="newPageCount")
+            +text-input-group("New Summary", false)(id="new-summary" name="newSummary")
+            +file-input-group("New Cover", false)(id="new-cover" name="newCover")
+            +text-input-group("New Language", false)(id="new-language" name="newLanguage")
+            +number-input-group("New Total Copies", false)(id="new-total-copies" name="newTotalCopies")
+            button.btn(class="btn-primary") Edit

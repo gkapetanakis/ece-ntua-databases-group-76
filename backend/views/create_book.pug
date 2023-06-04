@@ -1,0 +1,25 @@
+extends layout
+
+include mixins/input_groups
+include mixins/vstack
+
+block code
+    - const title = "Create Book"
+
+block main-content
+    form(action="/operator/create_book" method="POST")
+        +vstack()
+            h2 Create Book
+            +text-input-group("ISBN", false)(id="isbn" name="isbn" required=true)
+            +text-input-group("Title", false)(id="title" name="title" required=true)
+            +text-input-group("Publisher", false)(id="publisher" name="publisher" required=true)
+            +number-input-group("Page Count", false)(id="page-count" name="pageCount" required=true)
+            +text-input-group("Summary", false)(id="summary" name="summary" required=true)
+            +file-input-group("Cover", false)(id="cover" name="cover" required=false)
+            +text-input-group("Language", false)(id="language" name="language" required=true)
+            +number-input-group("Copies in School", false)(id="total-copies" name="totalCopies" placeholder="Leave empty or set to 0 if not available at your school")
+            +text-input-group("Author First Name", false)(id="author-fn" name="authorFirstName" required=true)
+            +text-input-group("Author Last Name", false)(id="author-ln" name="authorLastName" required=true)
+            +text-input-group("Category", false)(id="category" name="category" required=true)
+            +text-input-group("Keyword", false)(id="keyword" name="keyword" required=true)
+            button.btn(class="btn-primary") Create

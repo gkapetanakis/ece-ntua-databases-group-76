@@ -1,0 +1,20 @@
+mixin form-modal(headerText, footerButtonText)
+    .modal(id!= attributes.id class="fade" tabindex="-1" data-bs-backdrop="static")
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h1.modal-title(class="fs-5") #{headerText}
+                    button.btn-close(data-bs-dismiss="modal")
+                .modal-body
+                    form(
+                        id!= attributes.id + "-form"
+                        action!= attributes.action
+                        method!= attributes.method || "POST"
+                    )
+                        block
+                .modal-footer
+                    button.btn(
+                        id!= attributes.id + "-btn"
+                        class="btn-secondary"
+                        form!= attributes.id + "-form"
+                    ) #{footerButtonText}

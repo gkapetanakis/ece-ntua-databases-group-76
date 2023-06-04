@@ -1,0 +1,19 @@
+include ../mixins/form_modal
+include ../mixins/input_groups
+
+- let usrElemId = 0
+
+a.btn(id="reservations-btn" class="btn-secondary" href="/create_review") Create a review
+
+a.btn(id="reservations-btn" class="btn-secondary" href="/reservations") View and delete your active reservations
+
+button.btn(class="btn-secondary" data-bs-toggle="modal" data-bs-target="#browse-modal") View and reserve books available at your school (3.3.1)
++form-modal("Filters", "Search")(id="browse-modal" action="/3_3_1")
+    .vstack(class="gap-2")
+        p(class="fs-6 my-0 mx-2 align-self-start") All filters are optional.
+        +text-input-group("Title")(id= usrElemId++ name="title")
+        +text-input-group("Author")(id= usrElemId++ name="author")
+        +select-input-group("Category", categories)(id= usrElemId++ name="category")
+
+form(id="history-form" action="/3_3_2" method="POST" hidden)
+button.btn(id="history-btn" class="btn-secondary" form="history-form") View your borrowing history (3.3.2)

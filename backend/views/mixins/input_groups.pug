@@ -1,0 +1,65 @@
+mixin general-input-group(text, clearButtonExists=true)
+    .input-group
+        span.input-group-text(class="col-3") #{text}
+        if block
+            block
+        else
+            input.form-control(
+                id= attributes.id
+                name!= attributes.name
+                type!= attributes.type
+                required!= attributes.required
+                autocomplete!= attributes.autocomplete || "off"
+                placeholder!= attributes.placeholder || "Enter input here"
+            )
+        if clearButtonExists
+            button.btn(id= attributes.id + "-btn" class="btn-secondary" type="button") Clear
+    if clearButtonExists
+        script.
+            document.getElementById("#{attributes.id}" + "-btn").addEventListener("click", () => {
+                const input = document.getElementById("#{attributes.id}");
+                if (input instanceof HTMLInputElement)
+                    input.value = "";
+                else if (input instanceof HTMLSelectElement)
+                    input.selectedIndex = 0;
+            });
+
+mixin text-input-group(text, clearButtonExists=true)
+    - attributes.type="text"
+    +general-input-group(text, clearButtonExists)&attributes(attributes)
+
+mixin password-input-group(text, clearButtonExists=true)
+    - attributes.type="password"
+    +general-input-group(text, clearButtonExists)&attributes(attributes)
+
+mixin number-input-group(text, clearButtonExists=true)
+    - attributes.type="number"
+    +general-input-group(text, clearButtonExists)&attributes(attributes)
+
+mixin date-input-group(text, clearButtonExists=true)
+    - attributes.type="date"
+    +general-input-group(text, clearButtonExists)&attributes(attributes)
+
+mixin file-input-group(text, clearButtonExists=true)
+    - attributes.type="file"
+    +general-input-group(text, clearButtonExists)&attributes(attributes)
+
+mixin select-input-group(text, options, clearButtonExists=true)
+    +general-input-group(text, clearButtonExists)&attributes(attributes)
+        select.form-select(
+            id!= attributes.id
+            name!= attributes.name
+            required!= attributes.required
+            autocomplete!= attributes.autocomplete || "off"
+        )
+            option(selected hidden value="") #{attributes.placeholder || "Select an option"}
+            if options
+                each option in options
+                    option(value= option) #{option}
+
+mixin textarea-input-group(text, clearButtonExists=false)
+    +general-input-group(text, clearButtonExists)&attributes(attributes)
+        textarea.form-control(
+            id!= attributes.id
+            name!= attributes.name
+        )

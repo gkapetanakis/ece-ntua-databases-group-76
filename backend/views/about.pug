@@ -1,0 +1,14 @@
+extends layout.pug
+
+include mixins/vstack
+
+block code
+    - const title = "About"
+
+block main-content
+    +vstack()
+        p.lead(class="fw-bold") Project Group 76
+        ul(class="list-unstyled")
+            li Dimitrios Georgousis, el19005
+            li Georgios-Alexios Kapetanakis, el19062
+            li Ioannis Liolitsas, el19157

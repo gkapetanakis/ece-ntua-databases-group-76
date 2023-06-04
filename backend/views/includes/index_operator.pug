@@ -1,0 +1,50 @@
+include ../mixins/form_modal
+include ../mixins/input_groups
+
+- let oprElemId = 0
+
+a.btn(id="create-book-btn" class="btn-secondary" href="/operator/create_book") Create new book and optionally add it to your school
+
+button.btn(class="btn-secondary" data-bs-toggle="modal" data-bs-target="#reservations-modal") View and approve pending reservations made by members of your school
++form-modal("Filters", "Search")(id="reservations-modal" action="/operator/reservations" method="POST")
+    .vstack(class="gap-2")
+        p(class="fs-6 my-0 mx-2 align-self-start") All filters are optional.
+        +text-input-group("Username")(id= oprElemId++ name="username")
+
+button.btn(class="btn-secondary" data-bs-toggle="modal" data-bs-target="#due-borrowings-modal") View and mark as returned due borrowings of members of your school
++form-modal("Filters", "Search")(id="due-borrowings-modal" action="/operator/due_borrowings" method="POST")
+    .vstack(class="gap-2")
+        p(class="fs-6 my-0 mx-2 align-self-start") All filters are optional.
+        +text-input-group("Username")(id= oprElemId++ name="username")
+
+a.btn(id="unapproved-teachers-btn" class="btn-secondary" href="/operator/unapproved_teachers") View and approve pending teacher accounts of members of your school
+
+a.btn(id="unapproved-students-btn" class="btn-secondary" href="/operator/unapproved_students") View and approve pending student accounts of members of your school
+
+a.btn(id="school-member-catalogue-btn" class="btn-secondary" href="/operator/school_members") View and deactivate or delete school member accounts of members of your school
+
+a.btn(id="pending-reviews-btn" class="btn-secondary" href="/operator/pending_reviews") View and approve pending reviews of members of your school
+
+button.btn(class="btn-secondary" data-bs-toggle="modal" data-bs-target="#browse-modal") View books available at your school (3.2.1)
++form-modal("Filters", "Search")(id="browse-modal" action="/operator/3_2_1")
+    .vstack(class="gap-2")
+        p(class="fs-6 my-0 mx-2 align-self-start") All filters are optional.
+        +text-input-group("Title")(id= oprElemId++ name="title")
+        +text-input-group("Author")(id= oprElemId++ name="author")
+        +select-input-group("Category", categories)(id= oprElemId++ name="category")
+        +number-input-group("Copies")(id= oprElemId++ name="copies")
+
+button.btn(class="btn-secondary" data-bs-toggle="modal" data-bs-target="#overdue-borrowings-modal") View and mark as returned overdue borrowings of members of your school (3.2.2)
++form-modal("Filters", "Search")(id="overdue-borrowings-modal" action="/operator/3_2_2")
+    .vstack(class="gap-2")
+        p(class="fs-6 my-0 mx-2 align-self-start") All filters are optional.
+        +text-input-group("First Name")(id= oprElemId++ name="firstName")
+        +text-input-group("Last Name")(id= oprElemId++ name="lastName")
+        +number-input-group("Days Overd.")(id= oprElemId++ name="daysOverdue")
+
+button.btn(class="btn-secondary" data-bs-toggle="modal" data-bs-target="#reviews-modal") View average score of reviews of members of all schools (3.2.3)
++form-modal("Filters", "Search")(id="reviews-modal" action="/operator/3_2_3")
+    .vstack(class="gap-2")
+        p(class="fs-6 my-0 mx-2 align-self-start") All filters are optional.
+        +text-input-group("Username")(id= oprElemId++ name="username")
+        +select-input-group("Category", categories)(id= oprElemId++ name="category")

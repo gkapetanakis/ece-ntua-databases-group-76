@@ -1,0 +1,17 @@
+extends layout
+
+include mixins/input_groups
+include mixins/vstack
+
+block code
+    - const title = "Log In"
+
+block main-content
+    form(action="/login" method="POST")
+        +vstack()
+            h2 Log In
+            +text-input-group("Username", false)(id="username" name="username" required=true autocomplete=true)
+            +password-input-group("Password", false)(id="password" name="password" required=true autocomplete=true)
+            button.btn(class="btn-primary") Log In
+            hr(class="m-2")
+            a.btn(class="btn-secondary w-75 mx-auto" href="/register") I don't have an account

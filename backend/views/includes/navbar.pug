@@ -1,0 +1,20 @@
+mixin nav-item(text)
+    li.nav-item: a.nav-link(
+        href!= attributes.href
+        class!= attributes.class
+    ) #{text}
+
+nav.navbar(class="navbar-expand-md sticky-top bg-black" data-bs-theme="dark")
+    .container
+        a.navbar-brand(href="/") School Library Management System
+        button.navbar-toggler(data-bs-toggle="collapse" data-bs-target="#navbar"): span.navbar-toggler-icon
+        #navbar(class="collapse navbar-collapse justify-content-end")
+            ul.navbar-nav
+                +nav-item("Home")(href="/" class= index ? "active" : "")
+                +nav-item("About")(href="/about" class= about ? "active" : "")
+                if !username
+                    +nav-item("Log In")(href="/login" class= login ? "active" : "")
+                    +nav-item("Register")(href="/register" class= register ? "active" : "")
+                else
+                    +nav-item("Log Out")(href="/logout" class= logout ? "active" : "")
+                    +nav-item("Account")(href="/account" class= account ? "active" : "")

@@ -1,0 +1,12 @@
+extends layout.pug
+
+include mixins/vstack
+
+block code
+    - const title = "Failure :("
+
+block main-content
+    +vstack()
+        p.lead(class="p-3 bg-danger-subtle border border-danger rounded") #{failureMessage}
+        if backUrl
+            a.btn(class="btn-secondary w-75 mx-auto" href=backUrl) #{btnText ? btnText : (backUrl === "/" ? "Back to Home" : "Back")}

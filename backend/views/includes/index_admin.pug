@@ -1,0 +1,45 @@
+include ../mixins/form_modal
+include ../mixins/input_groups
+
+- let admElemId = 0
+
+a.btn(id="create-school-btn" class="btn-secondary" href="/admin/create_school") Create new school
+
+button.btn(class="btn-secondary" data-bs-toggle="modal" data-bs-target="#create-backup-modal") Create database backup
++form-modal("Options", "Create")(id="create-backup-modal" action="/admin/create_backup" method="POST")
+    .vstack(class="gap-2")
+        +text-input-group("Backup name", categories)(placeholder="Give a name for the backup" id= admElemId++ name="backupName" required)
+
+button.btn(class="btn-secondary" data-bs-toggle="modal" data-bs-target="#restore-backup-modal") Restore database backup
++form-modal("Options", "Restore")(id="restore-backup-modal" action="/admin/restore_backup" method="POST")
+    .vstack(class="gap-2")
+        +text-input-group("Backup name", categories)(placeholder="Give an existing backup name" id= admElemId++ name="backupName" required)
+
+a.btn(id="unapproved-operators-btn" class="btn-secondary" href="/admin/unapproved_operators") View and approve pending operator accounts
+
+button.btn(class="btn-secondary" data-bs-toggle="modal" data-bs-target="#borrowings-modal") View total borrowings per school in a date range (3.1.1)
++form-modal("Filters", "Search")(id="borrowings-modal" action="/admin/3_1_1" method="POST")
+    .vstack(class="gap-2")
+        p(class="fs-6 my-0 mx-2 align-self-start") All filters are optional.
+        +date-input-group("Start Date")(id= admElemId++ name="startDate")
+        +date-input-group("End Date")(id= admElemId++ name="endDate")
+
+button.btn(class="btn-secondary" data-bs-toggle="modal" data-bs-target="#category-info-modal") View authors with books of a category and teachers with borrowings of that category in the past year (3.1.2)
++form-modal("Filters", "Search")(id="category-info-modal" action="/admin/3_1_2" method="POST")
+    .vstack(class="gap-2")
+        +select-input-group("Category", categories)(placeholder="Select a category" id= admElemId++ name="category" required)
+
+form(id="teacher-borrowings-form" action="/admin/3_1_3" method="POST" hidden)
+button.btn(id="teacher-borrowings-btn" class="btn-secondary" form="teacher-borrowings-form") View teachers younger than 40 with the most borrowings (3.1.3)
+
+form(id="no-borrowings-form" action="/admin/3_1_4" method="POST" hidden)
+button.btn(id="no-borrowings-btn" class="btn-secondary" form="no-borrowings-form") View authors whose books have never been borrowed (3.1.4)
+
+form(id="approvals-form" action="/admin/3_1_5" method="POST" hidden)
+button.btn(id="approvals-btn" class="btn-secondary" form="approvals-form") View operators with same number of borrowing approvals that have more than 20 approvals (3.1.5)
+
+form(id="pairs-form" action="/admin/3_1_6" method="POST" hidden)
+button.btn(id="pairs-btn" class="btn-secondary" form="pairs-form") View the top 3 category pairs in borrowings (3.1.6)
+
+form(id="most-borrowings-form" action="/admin/3_1_7" method="POST" hidden)
+button.btn(id="most-borrowings-btn" class="btn-secondary" form="most-borrowings-form") View authors who have written at least 5 books less than the author with the most books written (3.1.7)

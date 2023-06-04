@@ -1,0 +1,22 @@
+extends layout
+
+include mixins/input_groups
+include mixins/vstack
+
+block code
+    - const title = "Register"
+
+block main-content
+    form(action="/register" method="POST")
+        +vstack()
+            h2 Register
+            +text-input-group("First Name", false)(id="first-name" name="firstName" required=true)
+            +text-input-group("Last Name", false)(id="last-name" name="lastName" required=true)
+            +date-input-group("Date of Birth", false)(id="dob" name="dateOfBirth" required=true)
+            +select-input-group("Occupation", occupations, false)(id="occupation" name="occupation" required=true)
+            +select-input-group("School", schools, false)(id="school" name="school" required=true)
+            +text-input-group("Username", false)(id="username" name="username" required=true)
+            +password-input-group("Password", false)(id="password" name="password" required=true)
+            button.btn(class="btn-primary") Register
+            hr(class="m-2")
+            a.btn(class="btn-secondary w-75 mx-auto" href="/login") I already have an account

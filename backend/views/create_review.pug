@@ -1,0 +1,16 @@
+extends layout
+
+include mixins/input_groups
+include mixins/vstack
+
+block code
+    - const title = "Create Review"
+
+block main-content
+    form(action="/create_review" method="POST")
+        +vstack()
+            h2 Create Review
+            +select-input-group("Book", books, false)(id="title-isbn" name="titleIsbn" required=true)
+            +select-input-group("Rating", scale, false)(id="rating" name="rating" required=true)
+            +textarea-input-group("Review Text", false)(id="review-text" name="reviewText")
+            button.btn(class="btn-primary") Submit review

@@ -1,0 +1,20 @@
+extends layout
+
+include mixins/input_groups
+include mixins/vstack
+
+block code
+    - const title = "Create School"
+
+block main-content
+    form(action="/admin/create_school" method="POST")
+        +vstack()
+            h2 Create School
+            +text-input-group("Name", false)(id="name" name="name" required=true)
+            +text-input-group("Street Name", false)(id="street-name" name="streetName" required=true)
+            +number-input-group("Street Number", false)(id="street-number" name="streetNumber" required=true)
+            +number-input-group("Postal Code", false)(id="postal-code" name="postalCode" required=true)
+            +text-input-group("City", false)(id="city" name="city" required=true)
+            +text-input-group("Princ. F. Name", false)(id="principalFirstName" name="principalFirstName" required=true)
+            +text-input-group("Princ. L. Name", false)(id="principalLastName" name="principalLastName" required=true)
+            button.btn(class="btn-primary") Create

@@ -1,0 +1,37 @@
+extends layout.pug
+
+block code
+    - const title = "Results"
+    - let elemId = 0
+
+block main-content
+    .container
+        main.vstack(class="mx-auto gap-2 my-4")
+            a.btn(class="btn-secondary col-md-10 col-lg-8 col-xl-6 mx-auto" href="/") Back
+            .table-responsive
+                table.table(class="table-striped table-bordered")
+                    // caption Table caption
+                    thead
+                        tr
+                            th(scope="col") #
+                            each item in cols
+                                th(scope="col") #{item}
+                    tbody.table-group-divider
+                        each row, index in rows
+                            tr
+                                th(scope="row") #{index}
+                                each item in row
+                                    td #{item!=null ? item : "-"}
+                                if lastColBtns
+                                    td
+                                        - let btn = 0
+                                        while btn < lastColBtns
+                                            - let field = 0
+                                            form(id=elemId++ action=lastColBtnAction[btn] method="POST" hidden)
+                                                while field < nFields[btn]
+                                                    input(type="text" name=lastColFieldName[btn][field] value=row[field])
+                                                    - field++
+                                            button.btn(id=elemId++ class="btn-secondary m-1" form=elemId-2)  #{lastColBtnText[btn]}
+                                            - btn++
+
+            a.btn(class="btn-secondary col-md-10 col-lg-8 col-xl-6 mx-auto" href="/") Back

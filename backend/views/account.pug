@@ -1,0 +1,22 @@
+extends layout.pug
+
+include mixins/input_groups
+include mixins/vstack
+
+block code
+    - const title = "Account"
+
+block main-content
+    form(action="/change_data" method="POST")
+        +vstack()
+            +password-input-group("Old Password", false)(id="old-password" name="oldPassword")
+            +password-input-group("New Password", false)(id="new-password" name="newPassword")
+            button.btn(class="btn-primary") Change Password
+            if schools
+                hr(class="m-2")
+                +select-input-group("New School", schools, false)(id="new-school" name="newSchool")
+                button.btn(class="btn-primary") Change School
+                hr(class="m-2")
+                +date-input-group("New Date of Birth", false)(id="new-date-of-birth" name="newDateOfBirth")
+                button.btn(class="btn-primary") Change Date of Birth
+
