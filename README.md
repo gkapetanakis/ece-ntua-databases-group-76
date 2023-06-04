@@ -19,15 +19,20 @@
 
 ### Instructions for the database
 1. `cd` into `/populate_db` and run `npm install`.
-2. Run `node fill_db.js <output_name>` where `<output_name>` is the name that will be given to the output of the process.  
+2. Run `node fill_db.js <output_name>` where `<output_name>` is the name that will be given to the output file of the process.  
    The output will be an SQL file containing dummy data to be inserted into the database.
-   We recommend selecting a filename similar to `../database/dummy.sql`,
+   We recommend selecting a filename similar to `../database/dummy_data.sql`,
    meaning inside the `/database` folder as it will make inserting the data easier.
 3. `cd` into `/database` and give execution permission for `init_db.sh`.
-4. Run `./init_db.sh <db_username> <db_password> <input_file>` where the first two arguments are the username and the password you use to access MariaDB, while the third is the name of the dummy data file you created on step 2.
-5. (Alternative) If you don't want to run the script or if it doesn't work you can parse the SQL files one by one using the command `mariadb --user=<db_username> --password=<db_password> < sql_file.sql`. Start with `schema.sql` and end with the dummy data file. The intermediate order does not matter.
+4. Run `node init_db.js <db_username> <db_password> [<data_file_1> <data_file_2> ...]`
+   where the first two arguments are the username and the password you use to access MariaDB,
+   while the rest are the names of the data files to be inserted in the database. Give the name of the file created on step 2.
+6. (Alternative) If you don't want to run the script or if it doesn't work you can parse the SQL
+   files one by one using the command `mariadb --user=<db_username> --password=<db_password> < sql_file.sql`.
+   Start with `schema.sql` and end with the dummy data file. The intermediate order does not matter.
 
 ### Notes
+* To change the amount of database rows generated for any table, change the values inside the `generate()` function in `/populate_db/generate.js`.
 * The dummy data generation script always creates the following users, which are useful for testing the application:
   * Username `admin`, password `admin`, is an admin
   * Username `operator`, password `operator`, is an operator
