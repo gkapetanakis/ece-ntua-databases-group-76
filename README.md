@@ -21,13 +21,13 @@
    where the first two arguments are the username and the password you use to access MariaDB,
    while the rest are the names of the data files to be inserted in the database. Give the name of the file created on step 2.
 4. (Alternative) If you don't want to run the script or if it doesn't work you can parse the SQL
-   files one by one using the command `mariadb --user=<db_username> --password=<db_password> < sql_file.sql`.
+   files one by one using the command `mariadb --user=<db_username> --password=<db_password> < <sql_file>`.
    Start with `schema.sql` and end with the dummy data file. The intermediate order does not matter.
 
 ### Instructions for the backend
 1. `cd` into `/backend` and run `npm install`.
 2. Create a file called `.env` and fill it according to `.env.sample`.  
-   Be sure to set `DB_NAME=slms`, because the database name is hardcoded in the SQL files.
+   If you set `DB_NAME`, be sure to set it as`DB_NAME=slms`, because the database name is hardcoded in the SQL files.
 3. Start the app in development mode using `npm run dev` or in production mode using `node app.js`.
 4. The app should now be accessible on `http://APP_HOST:APP_PORT/`. Of course `APP_HOST` should be `localhost` when running it locally.
 
