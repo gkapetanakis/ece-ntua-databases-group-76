@@ -106,7 +106,7 @@ export function saveTo(outfile, inserts) {
     for (let i = 0; i < inserts.length; ++i) {
         let [tableName, tableRows] = inserts[i];
 
-        let insertString = `insert ignore into ${tableName} (`;
+        let insertString = `insert into ${tableName} (`;
 
         const fieldNames = Object.keys(tableRows[0]);
         for (let j = 0; j < fieldNames.length; ++j) {
