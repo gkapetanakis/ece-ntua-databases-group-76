@@ -23,6 +23,13 @@
    The output will be an SQL file containing dummy data to be inserted into the database.
    We recommend selecting a filename similar to `../database/dummy.sql`,
    meaning inside the `/database` folder as it will make inserting the data easier.
-3. `cd` into `/database` and give execution permission for `init_db_unix.sh` or `init_db_windows.bat`, depending on your platform.
+3. `cd` into `/database` and give execution permission for `init_db.sh`.
 4. Run `./init_db.sh <db_username> <db_password> <input_file>` where the first two arguments are the username and the password you use to access MariaDB, while the third is the name of the dummy data file you created on step 2.
 5. (Alternative) If you don't want to run the script or if it doesn't work you can parse the SQL files one by one using the command `mariadb --user=<db_username> --password=<db_password> < sql_file.sql`. Start with `schema.sql` and end with the dummy data file. The intermediate order does not matter.
+
+### Notes
+* The dummy data generation script always creates the following users, which are useful for testing the application:
+  * Username `admin`, password `admin`, is an admin
+  * Username `operator`, password `operator`, is an operator
+  * Username `teacher`, password `teacher`, is a teacher
+  * Username `student`, password `student`, is a student
