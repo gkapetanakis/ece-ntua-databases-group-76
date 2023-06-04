@@ -17,7 +17,7 @@
 3. Start the app in development mode using `npm run dev` or in production mode using `node app.js`.
 4. The app should now be accessible on `http://APP_HOST:APP_PORT/`. Of course `APP_HOST` should be `localhost` when running it locally.
 
-### Instructions for the database (
+### Instructions for the database
 1. `cd` into `/populate_db` and run `npm install`.
 2. Run `node fill_db.js <output_name>` where `<output_name>` is the name that will be given to the output of the process.  
    The output will be an SQL file containing dummy data to be inserted into the database.
