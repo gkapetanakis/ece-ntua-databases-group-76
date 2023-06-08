@@ -17,10 +17,10 @@
    The output will be an SQL file containing dummy data to be inserted into the database.
    We recommend selecting a filename similar to `../database/dummy_data.sql`,
    meaning inside the `/database` folder as it will make inserting the data easier.
-3. Run `node init_db.js <db_username> <db_password> [<data_file_1> <data_file_2> ...]`
+4. `cd` into `/database` and run `node init_db.js <db_username> <db_password> [<data_file_1> <data_file_2> ...]`
    where the first two arguments are the username and the password you use to access MariaDB,
    while the rest are the names of the data files to be inserted in the database. Give the name of the file created on step 2.
-4. (Alternative) If you don't want to run the script or if it doesn't work you can parse the SQL
+5. (Alternative) If you don't want to run the script or if it doesn't work you can parse the SQL
    files one by one using the command `mariadb --user=<db_username> --password=<db_password> < <sql_file>`.
    Start with `schema.sql` and end with the dummy data file. The intermediate order does not matter.
 
